@@ -1,0 +1,28 @@
+﻿@using Core.Entities.Dto
+@model RecoveryMailDto
+@{
+    ViewData["Title"] = "Recover By Email";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class='forcolor'></div>
+<main>
+    <section class="recovery-email-container">
+        <span class="logo-container">
+            <i class="zmdi zmdi-landscape"></i>
+        </span>
+        <h1>RECOVERY EMAIL</h1>
+        @using (Html.BeginForm("PrepareRecovery", "Register", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(x => x.UserEmail, new { @placeholder = "Email", @type = "email", @class = "register-input" })
+            <i class="fas fa-envelope"></i>
+            <span class="text-danger"></span>
+            <div class="btn">
+                <button type="submit">Confirm</button>
+            </div>
+        }
+    </section>
+</main>
