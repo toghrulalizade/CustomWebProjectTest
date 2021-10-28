@@ -117,14 +117,27 @@ namespace Business.Services
             {
                 result.IsSuccess = false;
                 result.ResultMessage = MessageContainer.ErrorMessage.UserIsNotFound;
+                return result;
             }
             if (user != null && !user.IsConfirmed)
             {
                 result.IsSuccess = false;
                 result.ResultMessage = MessageContainer.ErrorMessage.UserMustBeConfirmedByEmail;
+                return result;
             }
-            result.IsSuccess = RegisterHelper.VerifyPassword(credential.Password, user.PasswordHash, user.PasswordSalt);
-            result.ResultMessage = MessageContainer.SuccessMessage.LoginSucceed;
+          
+                result.IsSuccess = RegisterHelper.VerifyPassword(credential.Password, user.PasswordHash, user.PasswordSalt);
+                if (!result.IsSuccess)
+                {
+                    result.ResultMessage = MessageContainer.ErrorMessage.LoginFailed;
+                }
+                else
+                {
+                    result.ResultMessage = MessageContainer.SuccessMessage.LoginSucceed;
+
+                }
+            
+           
 
             return result;
         }

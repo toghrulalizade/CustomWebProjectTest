@@ -10,7 +10,7 @@ namespace Business.ExternalServices.Mail
 {
     public class SendgridService
     {
-        public bool SendRecoveryMail(MailRequest request, RecoverOrConfirmationTemplate template)
+        public  bool SendRecoveryMail(MailRequest request, RecoverOrConfirmationTemplate template)
         {
             bool result;
             try
@@ -26,7 +26,7 @@ namespace Business.ExternalServices.Mail
                 sendGridMessage.SetTemplateId("d-0df55fe5878e4979a59c9183ef658847");
                 sendGridMessage.SetTemplateData(template);
 
-                var response = client.SendEmailAsync(sendGridMessage).Result;
+                var response =  client.SendEmailAsync(sendGridMessage).Result;
 
                 result = response.IsSuccessStatusCode;
             }
