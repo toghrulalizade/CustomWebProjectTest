@@ -198,6 +198,7 @@ namespace MvcWEB.Controllers
 
 
 
+
         [HttpGet("/Register/RecoverPassword")]
         public IActionResult RecoverPassword(int id)
         {
